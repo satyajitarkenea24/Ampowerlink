@@ -1,0 +1,209 @@
+<div class="container-fluid appointments--wrapper text-dark">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header p-0">
+          <ul ngbNav #nav="ngbNav" [activeId]="1" class="nav nav-tabs mb-0 w-100">
+            <li [ngbNavItem]="1">
+              <a ngbNavLink data-bs-toggle="tab" aria-expanded="true" class="nav-link">
+                Upcoming Appointments
+              </a>
+              <ng-template ngbNavContent>
+                <div class="container-fluid">
+                  <div class="row border-bottom mb-3 pb-3 px-2">
+                    <div class="col-12">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <h4 class="header-title">Upcoming Appointments</h4>
+                        <div class="d-flex flex-wrap gap-2">
+                          <button type="button" class="btn btn-light">
+                            <i class="ti ti-filter fs-16 me-1"></i>
+                            Filter
+                          </button>
+                          <button type="button" class="btn btn-primary">
+                            Create Appointment Request
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row px-2">
+                    <div class="col-12">
+                      <div class="col-12" *ngFor="let group of appointmentGroups">
+                        <!-- Day Strip -->
+                        <div class="time--strip fw-semibold mb-3">{{ group.day }}</div>
+
+                        <!-- Appointments under this day -->
+                        <div *ngFor="let appt of group.appointments" class="appointment--card mb-3">
+
+                          <!-- Header -->
+                          <div class="d-flex align-items-start w-100 border-bottom pb-2 mb-2">
+                            <i class="ti ti-calendar-time fs-24 text-orange me-2"></i>
+                            <div class="d-flex align-items-start justify-content-between w-100">
+                              <div class="d-flex flex-column w-100 me-2 text-dark">
+                                <h6 class="fs-16 fw-semibold mb-1 mt-2p">
+                                  {{ appt.doctor }} - {{ appt.specialty }}
+                                </h6>
+                                <p class="fs-13 mb-1">{{ appt.date }} | {{ appt.time }}</p>
+                                <p class="fs-13 mb-1">
+                                  <span class="d-flex align-items-start">
+                                    <i class="ti ti-user fs-16 me-1 mt-2p"></i>
+                                    <span class="me-1 flex-shrink-0">{{ appt.mode }} at</span>
+                                    <a href="#" class="text-primary fw-semibold text-decoration-underline">
+                                      {{ appt.address }}
+                                    </a>
+                                  </span>
+                                </p>
+                                <p class="fs-14 mb-1">
+                                  <span class="fw-bold">Reason:</span> {{ appt.reason }}
+                                </p>
+                              </div>
+                              <div class="badge fs-11 flex-shrink-0 fw-semibold {{appt.status}}">
+                                {{ appt.status }}
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Next Steps -->
+                          <div class="d-flex align-items-center w-100">
+                            <i class="ti ti-arrow-right fs-24 text-success me-2"></i>
+                            <h6 class="fw-semibold fs-16 m-0">Your Next Steps</h6>
+                          </div>
+                          <div class="cards-wrapper w-100">
+                            <div *ngFor="let step of appt.nextSteps"
+                              class="card-box mt-2 d-flex align-items-center justify-content-between"
+                              [ngClass]="step.type">
+                              <span class="text-dark fs-13 fw-semibold">
+                                {{ step.label }}
+                                <br *ngIf="step.link" />
+                                <a *ngIf="step.link" href="#" class="text-decoration-underline">{{ step.link }}</a>
+                              </span>
+                              <button type="button" class="btn btn-outline-primary">{{ step.button }}</button>
+                            </div>
+                          </div>
+
+                          <!-- Visit Prep & Instructions -->
+                          <div class="d-flex visit--pre--sec">
+                            <div class="appointment--card w-100 mt-2 mb-2">
+                              <div class="row">
+                                <div class="col-12">
+                                  <div class="d-flex align-items-start w-100">
+                                    <i class="ti ti-notes fs-24 text-primary me-2"></i>
+                                    <div class="d-flex flex-column w-100 me-2 text-dark">
+                                      <h6 class="fs-16 fw-semibold mb-1 mt-2p">Visit Prep & Instructions</h6>
+                                      <div class="row">
+                                        <div class="col-12 col-lg-6">
+                                          <p class="fs-13 d-flex align-items-start mb-1">
+                                            <i class="ti ti-briefcase fs-16 mt-2p me-1"></i>
+                                            {{ appt.visitPrep.instructions }}
+                                          </p>
+                                          <p *ngIf="appt.visitPrep.pdf" class="fs-13 mb-1">
+                                            <span class="d-flex align-items-start">
+                                              <i class="ti ti-file-type-pdf fs-16 me-1 mt-2p"></i>
+                                              <a href="#" class="text-primary fw-semibold text-decoration-underline">
+                                                {{ appt.visitPrep.pdf }}
+                                              </a>
+                                            </span>
+                                          </p>
+                                          <p class="fs-14 mb-0">
+                                            <span class="fw-semibold">Transportation Requested:</span>
+                                            {{ appt.visitPrep.transport }}
+                                          </p>
+                                        </div>
+                                        <div class="col-12 col-lg-6">
+                                          <p class="fs-13 d-flex align-items-start mb-1">
+                                            <i class="ti ti-clock-hour-5 fs-17 me-1 mt-2p"></i>
+                                            {{ appt.visitPrep.arrive }}
+                                          </p>
+                                          <p class="fs-14 mb-1">
+                                            <span class="fw-semibold">Interpreter Needed:</span>
+                                            {{ appt.visitPrep.interpreter }}
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <!-- Provider & Location -->
+                            <div class="appointment--card w-100 mt-2 mb-2">
+                              <div class="row">
+                                <div class="col-12">
+                                  <div class="d-flex align-items-start w-100">
+                                    <i class="ti ti-notes fs-24 text-primary me-2"></i>
+                                    <div class="d-flex flex-column w-100 me-2 text-dark">
+                                      <h6 class="fs-16 fw-semibold mb-1 mt-2p">Provider & Location</h6>
+                                      <div class="row">
+                                        <div class="col-12 col-lg-6">
+                                          <p class="fs-13 d-flex align-items-start mb-1">
+                                            <i class="ti ti-user fs-16 me-1 mt-2p"></i>
+                                            {{ appt.provider.name }}
+                                          </p>
+                                          <p class="fs-13 mb-1">
+                                            <i class="ti ti-phone fs-16 me-1"></i>
+                                            {{ appt.provider.phone }}
+                                          </p>
+                                        </div>
+                                        <div class="col-12 col-lg-6">
+                                          <p class="fs-13 d-flex align-items-start mb-1">
+                                            <i class="ti ti-building-hospital fs-17 me-1 mt-2p"></i>
+                                            {{ appt.provider.clinic }}
+                                          </p>
+                                          <p class="fs-13 d-flex align-items-start mb-1">
+                                            <i class="ti ti-map-pin fs-17 me-1 mt-2p"></i>
+                                            <a href="#" class="text-primary fw-semibold text-decoration-underline">
+                                              {{ appt.provider.address }}
+                                            </a>
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div> 
+                          
+                          <!-- Footer -->
+                          <div class="d-flex flex-wrap app--footer align-items-center justify-content-end">
+                            <button *ngFor="let btn of appt.footerButtons" type="button" [ngClass]="btn.style">
+                              {{ btn.label }}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </li>
+
+
+            <li [ngbNavItem]="2">
+              <a ngbNavLink data-bs-toggle="tab" aria-expanded="false" class="nav-link">
+                Past Appointments
+              </a>
+              <ng-template ngbNavContent>
+                <p class="mb-0">
+                  <span
+                    class="px-1 rounded me-1 fw-semibold d-inline-block bg-danger-subtle text-danger float-start">P</span>
+                  "Hi there! I'm a passionate individual who loves to explore
+                  new ideas and connect with like-minded people. My interests
+                  span a wide range of topics including technology, literature,
+                  travel, and fitness. I believe in the power of continuous
+                  learning and enjoy challenging myself to grow both personally
+                  and professionally.
+                </p>
+              </ng-template>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body px-0">
+          <div [ngbNavOutlet]="nav" class="tab-content"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

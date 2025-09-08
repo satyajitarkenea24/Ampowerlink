@@ -22,7 +22,7 @@ $gray-500: #a1a9b1;
 $gray-600: #8a969c;
 $gray-700: #6c757d;
 $gray-800: #343a40;
-$gray-900: #313a46;
+$gray-900: #444;
 $black:    #000;
 // scss-docs-end gray-color-variables
 
@@ -43,16 +43,16 @@ $grays: (
 // fusv-enable
 
 // scss-docs-start color-variables
-$blue:       #465dff;
+$blue:       #246BCE;
 $indigo:     #6b5eae;
 $purple:     #783bff;
 $pink:       #ff679b;
 $red:        #ff6d43;
-$orange:     #fd7e14;
-$yellow:     #f9c45c;
+$orange:     #FF630B;
+$yellow:     #FEF3C7;
 $green:      #6ac75a;
 $teal:       #02bc9c;
-$cyan:       #67baf1;
+$cyan:       #DFEFFF;
 // scss-docs-end color-variables
 
 // scss-docs-start colors-map
@@ -312,6 +312,7 @@ $warning:       $yellow;
 $danger:        $red;
 $light:         $gray-200;
 $dark:          $gray-900;
+$orange:        $orange;
 // scss-docs-end theme-color-variables
 
 // scss-docs-start theme-colors-map
@@ -324,6 +325,7 @@ $theme-colors: (
   "danger":     $danger,
   "light":      $light,
   "dark":       $dark,
+  "orange":     $orange
 );
 // scss-docs-end theme-colors-map
 
@@ -603,7 +605,7 @@ $aspect-ratios: (
 
 // scss-docs-start font-variables
 // stylelint-disable value-keyword-case
-$font-family-sans-serif:      'Inter', sans-serif;
+$font-family-sans-serif:      "Open Sans", sans-serif;
 $font-family-monospace:       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 // stylelint-enable value-keyword-case
 $font-family-base:            var(--#{$prefix}font-sans-serif);
@@ -869,8 +871,8 @@ $table-variants: (
 // Shared variables that are reassigned to `$input-` and `$btn-` specific variables.
 
 // scss-docs-start input-btn-variables
-$input-btn-padding-y:         .5rem;
-$input-btn-padding-x:         1.1rem;
+$input-btn-padding-y:         5px;
+$input-btn-padding-x:         14px;
 $input-btn-font-family:       null;
 $input-btn-font-size:         $font-size-base;
 $input-btn-line-height:       $line-height-base;
@@ -916,7 +918,7 @@ $btn-font-size-lg:            $input-btn-font-size-lg;
 
 $btn-border-width:            $input-btn-border-width;
 
-$btn-font-weight:             $font-weight-normal;
+$btn-font-weight:             $font-weight-semibold;
 $btn-box-shadow:              0px 2px 6px 0px;
 $btn-focus-width:             $input-btn-focus-width;
 $btn-focus-box-shadow:        $input-btn-focus-box-shadow;
