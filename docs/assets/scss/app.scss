@@ -12,13 +12,12 @@
 // Structure
 @import "structure/topbar";
 @import "structure/sidenav";
-@import "structure/horizontal";
 @import "structure/layout";
 @import "structure/footer";
 @import "structure/customizer";
 
 
- 
+
 // Pages
 @import "pages/chat";
 @import "pages/file-manager";
@@ -32,12 +31,12 @@
 
 // Plugins 
 @import "plugins/calendar";
-@import "plugins/choice";  
+@import "plugins/choice";
 @import "plugins/daterange";
-@import "plugins/flatpickr"; 
-@import "plugins/form-wizard";  
+@import "plugins/flatpickr";
+@import "plugins/form-wizard";
 @import "plugins/select2";
-@import "plugins/simplebar"; 
+@import "plugins/simplebar";
 @import "plugins/sweetalert2";
 @import "plugins/rangeslider";
 @import "custom_ng";
