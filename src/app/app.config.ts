@@ -42,6 +42,6 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(BrowserAnimationsModule, BrowserModule),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideEffects(AuthenticationEffects, CalendarEffects),
-    provideHttpClient(withFetch(), withInterceptorsFromDi()), provideAnimationsAsync(), provideAnimationsAsync(),
+    provideHttpClient(withFetch(), withInterceptorsFromDi()), provideAnimationsAsync(),
   ],
 }
